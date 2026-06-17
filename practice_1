@@ -1,0 +1,143 @@
+//1. FizzBuzz
+
+let n = Number(prompt());
+
+function fizzBuzz(num) {
+    if (num % 3 == 0 && num % 5 == 0) { return "FizzBuzz" }
+    else if (num % 3 == 0) { return "Fizz" }
+    else if (num % 5 == 0) { return "Buzz" }
+    else { return "Ничего" }
+}
+
+alert(fizzBuzz(n));
+
+
+//2. FizzBuzz 2.0
+
+let n = Number(prompt());
+
+function fizzBuzz(num) {
+    if (num % 3 == 0 && num % 5 == 0) { return "FizzBuzz" }
+    if (num % 3 == 0) { return "Fizz" }
+    if (num % 5 == 0) { return "Buzz" }
+    else { return "Ничего" }
+}
+
+for (let i = 1; i <= n; i++) {
+    console.log(fizzBuzz(i));
+}
+
+
+//3. Отгадай пароль
+
+const correctPassword = "1234";
+let userPassword = prompt("Введите пароль");
+
+function checkPassword(userPassword) {
+    if (userPassword == correctPassword) {
+        return "Доступ разрешен"
+    } else {
+        return "Доступ запрещён"
+    }
+}
+
+alert(checkPassword(userPassword));
+
+
+//4. Викторина
+
+let capital = prompt("Столица Франции?");
+let sum = prompt("2 + 2?");
+let skyColor = prompt("Цвет неба?");
+
+function checkAnswers(capital, sum, skyColor) {
+    let totalSum = 0;
+    if (capital === "Париж") { totalSum += 1; }
+    if (sum == 4) { totalSum += 1; }
+    if (skyColor === "Голубой" || skyColor === "Синий") { totalSum += 1; }
+    return `Вы набрали ${totalSum} из 3`
+}
+
+alert(checkAnswers(capital, sum, skyColor));
+
+
+//5. Символ
+let symbol = prompt();
+
+function checkPrompt(symbol) {
+    let res = /[0-9]/.test(symbol) ? "Цифра" : /[a-z]/.test(symbol) ? "Буква" : "Неизвестный символ"
+    return res;
+}
+
+alert(checkPrompt(symbol));
+
+
+//6. Числа наоборот
+
+let num = prompt();
+
+function reverse(num) {
+    num = num.toString().split("").reverse().join("");
+    return Number(num);
+}
+
+alert(reverse(num));
+
+
+//7. Подсчёт суммы цифр числа
+
+let num = prompt().toString();
+let sum = 0;
+for (char of num) {
+    sum += Number(char);
+}
+alert(sum);
+
+
+//8. Угадай число с подсказками
+
+let random = Math.floor(Math.random() * 50) + 1;
+let tryAmounts = 3;
+let prevDiff = Infinity;
+
+for (let i = 1; i <= tryAmounts; i++) {
+    let num = Number(prompt());
+    let currDiff = Math.abs(num - random);
+
+    if (num === random) {
+        alert("Вы угадали!");
+        break;
+    }
+
+    console.log(num > random ? "Меньше" : "Больше");
+
+    if (i > 1) {
+        console.log(currDiff < prevDiff ? "Ближе" : (currDiff > prevDiff ? "Дальше" : "Не изменилось"));
+    }
+
+    prevDiff = currDiff;
+
+    if (i === tryAmounts) console.log(`Было ${random}`);
+}
+
+
+//9. Форматирование числа
+
+let num = prompt();
+alert(num.split("").join("_"));
+
+
+//10. Валидация пароля
+
+let password = prompt();
+
+let isLengthValid = password.length >= 6 && password.length <= 20;
+let hasDigit = /\d/.test(password);
+let hasUpperCase = /[A-Z]/.test(password);
+let hasSpecial = /[!@#$%^&*]/.test(password);
+
+if (isLengthValid && hasDigit && hasUpperCase && hasSpecial) {
+    alert("Пароль надёжный");
+} else {
+    alert("Пароль слабый");
+}
